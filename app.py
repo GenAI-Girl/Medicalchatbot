@@ -4,7 +4,7 @@ from pinecone import Pinecone, ServerlessSpec
 from langchain_pinecone import PineconeVectorStore
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import DirectoryLoader, PyPDFLoader
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.prompts import PromptTemplate
 from langchain_community.llms import CTransformers
@@ -75,7 +75,7 @@ def chat():
     msg = request.form["msg"]
     input = msg
     print(input)
-    result=qa({"query": input})
+    result=qa.invoke({"query": input})
     print("Response : ", result["result"])
     return str(result["result"])
 
